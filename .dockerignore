@@ -1,0 +1,9 @@
+.env_example
+
+# IDE's
+.idea
+.vscode
+
+# Platform specific
+.DS_store
+Thumbs.db

@@ -1,0 +1,26 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[scripts]
+shell = "python manage.py shell"
+makemigrations = "python manage.py makemigrations"
+migrate = "python manage.py migrate"
+reset = "python manage.py reset_db --noinput -c"
+loaddata = "python manage.py loaddata initial_data -v 3"
+test = "python manage.py test"
+lint = "black . --check --diff"
+
+[packages]
+django = "*"
+psycopg2-binary = "*"
+django-environ = "*"
+black = "*"
+django-extensions = "*"
+djangorestframework = "*"
+
+[dev-packages]
+
+[requires]
+python_version = "3.9"
