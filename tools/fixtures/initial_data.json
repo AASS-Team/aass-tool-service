@@ -1,0 +1,47 @@
+[
+	{
+	  "model": "tools.tool",
+	  "pk": "1508f63a-1564-45ac-a882-6b7f5f9ae6d7",
+	  "fields": {
+		"name": "Spektrometer DS213",
+		"type": "machine",
+		"available": true
+	  }
+	},
+	{
+	  "model": "tools.tool",
+	  "pk": "485b4228-5e0c-49ce-97ed-b148f3247276",
+	  "fields": {
+		"name": "Pipeta veľká",
+		"type": "tool",
+		"available": true
+	  }
+	},
+	{
+	  "model": "tools.tool",
+	  "pk": "818decb5-fe22-49b0-9284-453bc50dd66c",
+	  "fields": {
+		"name": "Sekvenátor Medirex MX2",
+		"type": "machine",
+		"available": true
+	  }
+	},
+	{
+	  "model": "tools.tool",
+	  "pk": "d9117dfe-fd10-4fba-8a20-8f1f75319d1a",
+	  "fields": {
+		"name": "Pipeta veľká",
+		"type": "tool",
+		"available": true
+	  }
+	},
+	{
+	  "model": "tools.tool",
+	  "pk": "dbbe6249-ecb7-45f1-8c21-059751391edb",
+	  "fields": {
+		"name": "Centrifúga SRT HEMI",
+		"type": "machine",
+		"available": true
+	  }
+	}
+  ]  
