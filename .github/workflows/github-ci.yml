@@ -11,6 +11,7 @@ jobs:
         run: |
           cp .env.example .env
           echo "${{ secrets.environment }}" >> .env
+          docker network create aass_network
           docker-compose up --build -d
           docker-compose exec -T web pipenv run migrate
 
