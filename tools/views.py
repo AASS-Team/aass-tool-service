@@ -27,16 +27,13 @@ class ToolsList(APIView):
             return Response(
                 data={
                     "errors": serializer.errors,
-                    "message": "Nepodarilo sa uložiť náradie",
                 },
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
         serializer.save(available=True)
         return Response(
-            data={
-                "message": "Náradie uložené",
-            },
+            data=serializer.data,
             status=status.HTTP_201_CREATED,
         )
 
@@ -55,7 +52,7 @@ class ToolDetail(APIView):
     def get(self, request, id, format=None):
         tool = self.get_object(id)
         serializer = serializers.ToolSerializer(tool)
-        return Response(serializer.data)
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def put(self, request, id, format=None):
         tool = self.get_object(id)
@@ -64,21 +61,24 @@ class ToolDetail(APIView):
         if not serializer.is_valid():
             return Response(
                 data={
-                    "message": "Nepodarilo sa uložiť náradie",
                     "errors": serializer.errors,
                 },
                 status=status.HTTP_400_BAD_REQUEST,
             )
 
         serializer.save()
-        return Response(data={"message": "Náradie uložené"})
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
 
     def delete(self, request, id, format=None):
         tool = self.get_object(id)
-        tool.delete()
+        deleted_rows = tool.delete()
 
-        return Response(
-            data={
-                "message": "Náradie vymazané",
-            },
-        )
+        if len(deleted_rows) <= 0:
+            return Response(
+                data={
+                    "errors": {"global": "Nepodarilo sa vymazať nástroj"},
+                },
+                status=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            )
+
+        return Response(status=status.HTTP_204_NO_CONTENT)
