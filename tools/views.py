@@ -82,3 +82,22 @@ class ToolDetail(APIView):
             )
 
         return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class BulkToolsList(APIView):
+    """
+    Bulk list tools
+    """
+
+    serializer_class = serializers.ToolSerializer
+
+    def post(self, request, format=None):
+        if not isinstance(request.data, list):
+            return Response(
+                status=status.HTTP_400_BAD_REQUEST,
+            )
+
+        tools = Tool.objects.filter(id__in=request.data)
+        serializer = self.serializer_class(tools, many=True)
+
+        return Response(data=serializer.data)
